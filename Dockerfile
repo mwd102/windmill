@@ -70,7 +70,7 @@ COPY /openflow.openapi.yaml /openflow.openapi.yaml
 COPY /backend/windmill-api/build_openapi.sh /backend/windmill-api/build_openapi.sh
 COPY /system_prompts/auto-generated /system_prompts/auto-generated
 
-RUN cd /backend/windmill-api && . ./build_openapi.sh
+RUN cd /backend/windmill-api && sed -i 's/\r$//' ./build_openapi.sh && sh ./build_openapi.sh
 COPY /backend/parsers/windmill-parser-wasm/pkg/ /backend/parsers/windmill-parser-wasm/pkg/
 COPY /typescript-client/docs/ /frontend/static/tsdocs/
 COPY /python-client/docs/ /frontend/static/pydocs/
